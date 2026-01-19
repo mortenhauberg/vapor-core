@@ -75,6 +75,9 @@ trait NotifiesLambda
 
         curl_reset($handler);
 
-        curl_close($handler);
+        // curl_close is deprecated in PHP 8.5+
+        if (PHP_VERSION_ID < 80500) {
+            curl_close($handler);
+        }
     }
 }
